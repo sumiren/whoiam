@@ -2,8 +2,13 @@ import type { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import { Button } from "@mantine/core";
 
 const Home: NextPage = () => {
+  const test = () => {
+    alert('alert');
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -40,6 +45,10 @@ const Home: NextPage = () => {
             <h2>Examples &rarr;</h2>
             <p>Discover and deploy boilerplate example Next.js projects.</p>
           </a>
+
+          <Button color="cyan" radius="md" size="xl" onClick={test}>
+            Settings
+          </Button>
 
           <a
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
