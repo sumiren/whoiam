@@ -172,16 +172,20 @@ const mantineColors = {
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./pages/**/*.{js,ts,jsx,tsx}","./components/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./layouts/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     screens: {
       sm: "400px",
       md: "768px",
-      lg: "1400px"
+      lg: "1400px",
     },
     extend: {
-      color: mantineColors
+      color: mantineColors,
     },
   },
   plugins: [],
-}
+};
