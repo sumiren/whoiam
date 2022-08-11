@@ -15,6 +15,11 @@ export const MyApp = ({Component, pageProps}: AppProps) => {
         withNormalizeCSS
         theme={{
           colorScheme: "dark",
+          breakpoints: {
+            sm: 400,
+            md: 768,
+            lg: 1400
+          }
         }}
       >
         <Component {...pageProps} />
