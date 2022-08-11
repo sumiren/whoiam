@@ -1,4 +1,4 @@
-import type { NextPage, GetStaticProps } from "next";
+import type {GetStaticProps, NextPage} from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -19,7 +19,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to <a href="https://nextjs.org">Next.js2ss!</a>
         </h1>
 
         <p className={styles.description}>
@@ -79,8 +79,7 @@ const Home: NextPage = () => {
 };
 
 export const getStaticProps: GetStaticProps = () => {
-  const hoge = { a: 3 };
-  console.log(hoge["a"]);
+  console.log('get static props');
   return {
     props: {},
   };

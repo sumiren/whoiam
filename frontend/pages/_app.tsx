@@ -1,3 +1,4 @@
+import '../styles/tailwind.css'
 import type {AppProps} from "next/app";
 import {MantineProvider} from "@mantine/core";
 import Head from "next/head";
