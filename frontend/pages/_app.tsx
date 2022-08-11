@@ -1,9 +1,6 @@
-import "../styles/globals.css";
 import type {AppProps} from "next/app";
 import {MantineProvider} from "@mantine/core";
-import {Button} from "@mantine/core";
 import Head from "next/head";
-import { useState } from 'react';
 
 export const MyApp = ({Component, pageProps}: AppProps) => {
   return (
