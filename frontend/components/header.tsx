@@ -25,7 +25,7 @@ export const Header = () => {
       <div className="flex items-center">
         <ActionIcon
           variant="outline"
-          color={ dark ? 'yellow.4' : 'dark.4'}
+          color={dark ? "yellow.4" : "dark.4"}
           size="lg"
           onClick={() => toggleColorScheme()}
         >

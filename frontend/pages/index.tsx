@@ -31,11 +31,11 @@ const Home: NextPage = () => {
         </section>
       </main>
 
-        <section className="bg-stone-600 px-4 py-10 text-white mt-20">
-          <Text className="text-4xl font-bold">テスト文言</Text>
-          <Text className="text-4xl font-bold mt-4">テスト文言</Text>
-          <Text className="text-4xl font-bold mt-4">テスト文言</Text>
-         </section>
+      <section className="bg-stone-600 px-4 py-10 text-white mt-20">
+        <Text className="text-4xl font-bold">テスト文言</Text>
+        <Text className="text-4xl font-bold mt-4">テスト文言</Text>
+        <Text className="text-4xl font-bold mt-4">テスト文言</Text>
+      </section>
       <section className="bg-stone-600 px-4 py-10 text-white mt-20">
         <Text className="text-4xl font-bold">テスト文言</Text>
         <Text className="text-4xl font-bold mt-4">テスト文言</Text>
@@ -53,7 +53,6 @@ const Home: NextPage = () => {
         <Text className="text-4xl font-bold mt-4">テスト文言</Text>
         <Text className="text-4xl font-bold mt-4">テスト文言</Text>
       </section>
-
     </div>
   );
 };

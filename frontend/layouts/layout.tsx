@@ -10,8 +10,12 @@ export const Layout = ({ children }: { children: ReactElement }) => {
           main: "p-0",
         }}
         header={<Header></Header>}
-        // @ts-ignore
-        footer={<Footer className="h-8 p-1"><div></div></Footer>}
+        footer={
+          // @ts-ignore
+          <Footer className="h-8 p-1">
+            <div></div>
+          </Footer>
+        }
       >
         <div className="mt-16"></div>
         {children}
