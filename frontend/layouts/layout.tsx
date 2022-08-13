@@ -26,7 +26,9 @@ export const Layout = ({ children }: { children: ReactElement }) => {
         footer={
           // @ts-ignore
           <Footer className="mt-10 py-5 z-30 relative">
-            <Text className="text-sm text-center text-m_dark-3">© 2022 sumiren</Text>
+            <Text className="text-sm text-center text-m_dark-3">
+              © 2022 sumiren
+            </Text>
           </Footer>
         }
       >

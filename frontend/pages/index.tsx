@@ -1,10 +1,26 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import { Text, ThemeIcon } from "@mantine/core";
+import {
+  List,
+  Text,
+  ThemeIcon,
+  Button,
+  useMantineColorScheme,
+} from "@mantine/core";
 import { IconBrandTwitter, IconBrandFacebook } from "@tabler/icons";
+import { ReactNode } from "react";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   const pink = "bg-pink-600";
+  const blogPosts = [...Array(5)].map((_) => ({
+    header: "This is a header",
+    description:
+      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+    date: "2022.07.11",
+  }));
+  const { colorScheme } = useMantineColorScheme();
+  const dark = colorScheme === "dark";
 
   return (
     <div>
@@ -19,8 +35,8 @@ const Home: NextPage = () => {
           <div className="flex justify-center">
             <div className="w-full lg:w-3/4 lg:flex lg:justify-between">
               <div>
-                <Text className="text-4xl font-bold">Sumiren Portfolio</Text>
-                <Text className="mt-2 text-l font-semibold">
+                <Text className="text-3xl font-bold">Sumiren Portfolio</Text>
+                <Text className="mt-2 text-m font-semibold">
                   sumirenのポートフォリオのためのページです
                 </Text>
               </div>
@@ -35,6 +51,37 @@ const Home: NextPage = () => {
             </div>
           </div>
         </section>
+        <Section title="Blog">
+          <List>
+            {blogPosts.map((item, index) => {
+              return (
+                <List.Item key={index}>
+                  <div className="mt-4">
+                    <Text className="text-2xl">{item.header}</Text>
+                    <Text className="mt-2 text-sm" lineClamp={2}>
+                      {item.description}
+                    </Text>
+                    <Text className="mt-2 text-sm">{item.date}</Text>
+                  </div>
+                </List.Item>
+              );
+            })}
+          </List>
+          <div className="flex justify-center">
+            <Link href="/blog" passHref>
+              <Button
+                component="a"
+                variant={dark ? "white" : "filled"}
+                radius="xl"
+                color="dark"
+                className="mt-10"
+                size="md"
+              >
+                View All
+              </Button>
+            </Link>
+          </div>
+        </Section>
       </main>
 
       <section className="bg-stone-600 px-4 py-10 text-white mt-20">
@@ -60,6 +107,29 @@ const Home: NextPage = () => {
         <Text className="text-4xl font-bold mt-4">テスト文言</Text>
       </section>
     </div>
+  );
+};
+
+const Section = ({
+  children,
+  title,
+}: {
+  children: ReactNode;
+  title: string;
+}) => {
+  return (
+    <>
+      <section className="px-4 my-10">
+        <div className="flex justify-center">
+          <div className="w-full lg:w-3/4 lg:flex lg:justify-between">
+            <div>
+              <Text className="text-3xl font-bold">{title}</Text>
+              <div className="mt-10">{children}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 
