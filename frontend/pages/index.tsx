@@ -6,6 +6,10 @@ import { ViewButton } from "../components/view-button";
 import { BlogList } from "../components/blog-list";
 import { Portfolio, PortfolioList } from "../components/portfolio-list";
 import { SimpleSection } from "../components/simple-section";
+import {
+  GitHubRepository,
+  GitHubRepositoryList,
+} from "../components/github-repository-list";
 
 const Home: NextPage = () => {
   const pink = "bg-pink-600";
@@ -21,6 +25,35 @@ const Home: NextPage = () => {
     description:
       "技術ブログをやっています。フルスタックエンジニアの浅く広めの技術発信が中心です。月に4本くらい発信します",
     period: "2022.05 -",
+  }));
+  const repositories: GitHubRepository[] = [...Array(2)].map((_) => ({
+    name: "sumiren/bookapp",
+    description:
+      "control tsundoku books and manage your life of reading nice books.",
+    stars: 30,
+    forks: 5,
+    techRatio: [
+      {
+        tech: "TypeScript",
+        percentage: 50,
+        color: "yellow.5",
+      },
+      {
+        tech: "Ruby on Rails",
+        percentage: 25,
+        color: "red.5",
+      },
+      {
+        tech: "Docker",
+        percentage: 20,
+        color: "blue.5",
+      },
+      {
+        tech: "Other",
+        percentage: 5,
+        color: "dark.0",
+      },
+    ],
   }));
 
   return (
@@ -56,7 +89,7 @@ const Home: NextPage = () => {
         <div className="my-10">
           <SimpleSection title="Blog">
             <BlogList blogPosts={blogPosts} />
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-10">
               <ViewButton text="View All" href="/blog"></ViewButton>
             </div>
           </SimpleSection>
@@ -65,35 +98,33 @@ const Home: NextPage = () => {
         <div className="my-20">
           <SimpleSection title="Portfolio">
             <PortfolioList portfolios={portfolios} />
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-10">
               <ViewButton text="View All" href="/blog"></ViewButton>
             </div>
           </SimpleSection>
         </div>
+        <div className="lg:flex lg:justify-between">
+          <div className="my-20">
+            <SimpleSection title="GitHub">
+              <GitHubRepositoryList repositories={repositories} />
+              <div className="flex justify-center mt-14">
+                <ViewButton
+                  text="View on GitHub"
+                  href="https://github.com/sumiren"
+                ></ViewButton>
+              </div>
+            </SimpleSection>
+          </div>
+          <div className="my-20">
+            <SimpleSection title="Twitter">
+              <PortfolioList portfolios={portfolios} />
+              <div className="flex justify-center mt-10">
+                <ViewButton text="View on Twitter" href="/blog"></ViewButton>
+              </div>
+            </SimpleSection>
+          </div>
+        </div>
       </main>
-
-      <section className="bg-stone-600 px-4 py-10 text-white mt-20">
-        <Text className="text-4xl font-bold">テスト文言</Text>
-        <Text className="text-4xl font-bold mt-4">テスト文言</Text>
-        <Text className="text-4xl font-bold mt-4">テスト文言</Text>
-      </section>
-      <section className="bg-stone-600 px-4 py-10 text-white mt-20">
-        <Text className="text-4xl font-bold">テスト文言</Text>
-        <Text className="text-4xl font-bold mt-4">テスト文言</Text>
-        <Text className="text-4xl font-bold mt-4">テスト文言</Text>
-      </section>
-
-      <section className="bg-stone-600 px-4 py-10 text-white mt-20">
-        <Text className="text-4xl font-bold">テスト文言</Text>
-        <Text className="text-4xl font-bold mt-4">テスト文言</Text>
-        <Text className="text-4xl font-bold mt-4">テスト文言</Text>
-      </section>
-
-      <section className="bg-stone-600 px-4 py-10 text-white mt-20">
-        <Text className="text-4xl font-bold">テスト文言</Text>
-        <Text className="text-4xl font-bold mt-4">テスト文言</Text>
-        <Text className="text-4xl font-bold mt-4">テスト文言</Text>
-      </section>
     </div>
   );
 };

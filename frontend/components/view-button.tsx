@@ -18,7 +18,6 @@ export const ViewButton = ({ text, href }: ViewButtonProps) => {
           variant={dark ? "white" : "filled"}
           radius="xl"
           color="dark"
-          className="mt-10"
           size="xl"
         >
           {text}
