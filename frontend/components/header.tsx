@@ -10,19 +10,15 @@ import { IconMoonStars, IconSun } from "@tabler/icons";
 import Link from "next/link";
 
 interface HeaderProps {
+  links: { href: string; text: string }[];
   burgerOpenedState: boolean;
   setState: Dispatch<SetStateAction<boolean>>;
 }
 
-export const Header = ({ setState, burgerOpenedState }: HeaderProps) => {
+export const Header = ({ links, setState, burgerOpenedState }: HeaderProps) => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === "dark";
-  const links: { href: string; text: string }[] = [
-    { href: "/about", text: "About" },
-    { href: "/about", text: "Blog" },
-    { href: "/about", text: "Portfolio" },
-    { href: "/about", text: "Contact" },
-  ];
+
   return (
     <>
       {/* @ts-ignore */}
