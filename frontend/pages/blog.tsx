@@ -3,7 +3,7 @@ import Head from "next/head";
 import SimpleHeadlineAndTitleSection from "../components/simple-headline-and-title-section";
 import PaddingXWrapper from "../components/padding-x-wrapper";
 import { BlogList } from "../components/blog-list";
-import { DummyBlogPostsState } from "../test-data/dummy-blog-posts-state";
+import { DummyBlogPostsState } from "../lib/dummy-blog-posts-state";
 import InfiniteScrollArea from "../components/infinite-scroll-area";
 
 const Blog: NextPage = () => {

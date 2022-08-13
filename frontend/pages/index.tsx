@@ -12,8 +12,8 @@ import {
 } from "../components/github-repository-list";
 import { Tweet, TwitterList } from "../components/twitter-list";
 import PaddingXWrapper from "../components/padding-x-wrapper";
-import { DummyBlogPostsState } from "../test-data/dummy-blog-posts-state";
-import { dummyPortfolios } from "../test-data/dummy-portfolios";
+import { DummyBlogPostsState } from "../lib/dummy-blog-posts-state";
+import { dummyPortfolios } from "../lib/dummy-portfolios";
 
 const Home: NextPage = () => {
   const pink = "bg-pink-600";
@@ -85,7 +85,6 @@ const Home: NextPage = () => {
             <SimpleHeadlineAndTitleSection headline="Blog">
               <BlogList
                 blogPosts={dummyBlogPostsState.blogPosts}
-                onlySummary={true}
               />
               <div className="flex justify-center mt-10">
                 <ViewButton text="View All" href="/blog"></ViewButton>
@@ -97,7 +96,7 @@ const Home: NextPage = () => {
             <SimpleHeadlineAndTitleSection headline="Portfolio">
               <PortfolioList portfolios={dummyPortfolios} />
               <div className="flex justify-center mt-10">
-                <ViewButton text="View All" href="/blog"></ViewButton>
+                <ViewButton text="View All" href="/portfolio"></ViewButton>
               </div>
             </SimpleHeadlineAndTitleSection>
           </div>
