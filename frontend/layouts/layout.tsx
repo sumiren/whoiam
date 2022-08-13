@@ -1,4 +1,4 @@
-import { AppShell, Footer} from "@mantine/core";
+import { AppShell, Footer, Text } from "@mantine/core";
 import { ReactElement, useState } from "react";
 import { Header } from "../components/header";
 import { HeaderMenuOverlay } from "../components/header-menu-overlay";
@@ -25,8 +25,8 @@ export const Layout = ({ children }: { children: ReactElement }) => {
         }
         footer={
           // @ts-ignore
-          <Footer className="h-8 p-1 z-30">
-            <div></div>
+          <Footer className="mt-10 py-5 z-30 relative">
+            <Text className="text-sm text-center text-m_dark-3">© 2022 sumiren</Text>
           </Footer>
         }
       >

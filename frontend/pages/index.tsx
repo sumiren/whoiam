@@ -16,17 +16,23 @@ const Home: NextPage = () => {
 
       <main>
         <section className={pink + " px-4 py-10 text-white"}>
-          <Text className="text-4xl font-bold">Sumiren Portfolio</Text>
-          <Text className="mt-2 text-l font-semibold">
-            Sumirenのポートフォリオのためのページです
-          </Text>
-          <div className="mt-10">
-            <ThemeIcon variant="filled" className={pink}>
-              <IconBrandTwitter></IconBrandTwitter>
-            </ThemeIcon>
-            <ThemeIcon variant="filled" className={pink}>
-              <IconBrandFacebook></IconBrandFacebook>
-            </ThemeIcon>
+          <div className="flex justify-center">
+            <div className="w-full lg:w-3/4 lg:flex lg:justify-between">
+              <div>
+                <Text className="text-4xl font-bold">Sumiren Portfolio</Text>
+                <Text className="mt-2 text-l font-semibold">
+                  sumirenのポートフォリオのためのページです
+                </Text>
+              </div>
+              <div className="mt-10">
+                <ThemeIcon variant="filled" className={pink}>
+                  <IconBrandTwitter></IconBrandTwitter>
+                </ThemeIcon>
+                <ThemeIcon variant="filled" className={pink}>
+                  <IconBrandFacebook></IconBrandFacebook>
+                </ThemeIcon>
+              </div>
+            </div>
           </div>
         </section>
       </main>

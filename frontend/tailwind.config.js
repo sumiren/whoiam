@@ -181,10 +181,10 @@ module.exports = {
     screens: {
       sm: "400px",
       md: "768px",
-      lg: "1400px",
+      lg: "1024px",
     },
     extend: {
-      color: mantineColors,
+      colors: mantineColors,
     },
   },
   plugins: [],

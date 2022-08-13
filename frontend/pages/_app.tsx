@@ -31,7 +31,7 @@ export const MyApp = ({ Component, pageProps }: AppProps) => {
             breakpoints: {
               sm: 400,
               md: 768,
-              lg: 1400,
+              lg: 1024,
             },
           }}
         >
