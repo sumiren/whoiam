@@ -3,7 +3,7 @@ import Head from "next/head";
 import { Text, ThemeIcon } from "@mantine/core";
 import { IconBrandTwitter, IconBrandFacebook } from "@tabler/icons";
 
-const About: NextPage = () => {
+const Blog: NextPage = () => {
   const pink = "bg-pink-600";
 
   return (
@@ -55,4 +55,4 @@ const About: NextPage = () => {
   );
 };
 
-export default About;
+export default Blog;

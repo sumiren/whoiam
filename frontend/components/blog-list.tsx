@@ -16,7 +16,7 @@ export const BlogList = ({ blogPosts }: BlogListProps) => {
       {blogPosts.map((item, index) => {
         return (
           <List.Item key={index}>
-            <div className={index ? undefined : "mt-8"}>
+            <div className={index ? "mt-8" : ""}>
               <Text className="text-2xl">{item.header}</Text>
               <Text className="mt-4 text-base" lineClamp={2}>
                 {item.description}
