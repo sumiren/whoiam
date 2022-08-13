@@ -16,14 +16,13 @@ interface HeaderProps {
 
 export const Header = ({ setState, burgerOpenedState }: HeaderProps) => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const dark = colorScheme === "dark";
   const links: { href: string; text: string }[] = [
     { href: "/about", text: "About" },
     { href: "/about", text: "Blog" },
     { href: "/about", text: "Portfolio" },
     { href: "/about", text: "Contact" },
   ];
-
-  const dark = colorScheme === "dark";
   return (
     <>
       {/* @ts-ignore */}

@@ -1,15 +1,14 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import {
-  List,
   Text,
   ThemeIcon,
-  Button,
-  useMantineColorScheme,
 } from "@mantine/core";
 import { IconBrandTwitter, IconBrandFacebook } from "@tabler/icons";
 import { ReactNode } from "react";
-import Link from "next/link";
+import { ViewButton } from "../components/view-button";
+import { BlogList } from "../components/blog-list";
+import { Portfolio, PortfolioList } from "../components/portfolio-list";
 
 const Home: NextPage = () => {
   const pink = "bg-pink-600";
@@ -19,8 +18,13 @@ const Home: NextPage = () => {
       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
     date: "2022.07.11",
   }));
-  const { colorScheme } = useMantineColorScheme();
-  const dark = colorScheme === "dark";
+  const portfolios: Portfolio[] = [...Array(2)].map((_) => ({
+    thumbnail: "/portfolio-thumbnail.png",
+    title: "sumiren ブログ",
+    description:
+      "技術ブログをやっています。フルスタックエンジニアの浅く広めの技術発信が中心です。月に4本くらい発信します",
+    period: "2022.05 -",
+  }));
 
   return (
     <div>
@@ -51,37 +55,24 @@ const Home: NextPage = () => {
             </div>
           </div>
         </section>
-        <Section title="Blog">
-          <List>
-            {blogPosts.map((item, index) => {
-              return (
-                <List.Item key={index}>
-                  <div className="mt-4">
-                    <Text className="text-2xl">{item.header}</Text>
-                    <Text className="mt-2 text-sm" lineClamp={2}>
-                      {item.description}
-                    </Text>
-                    <Text className="mt-2 text-sm">{item.date}</Text>
-                  </div>
-                </List.Item>
-              );
-            })}
-          </List>
-          <div className="flex justify-center">
-            <Link href="/blog" passHref>
-              <Button
-                component="a"
-                variant={dark ? "white" : "filled"}
-                radius="xl"
-                color="dark"
-                className="mt-10"
-                size="md"
-              >
-                View All
-              </Button>
-            </Link>
-          </div>
-        </Section>
+
+        <div className="my-10">
+          <SimpleSection title="Blog">
+            <BlogList blogPosts={blogPosts} />
+            <div className="flex justify-center">
+              <ViewButton text="View All" href="/blog"></ViewButton>
+            </div>
+          </SimpleSection>
+        </div>
+
+        <div className="my-20">
+          <SimpleSection title="Portfolio">
+            <PortfolioList portfolios={portfolios} />
+            <div className="flex justify-center">
+              <ViewButton text="View All" href="/blog"></ViewButton>
+            </div>
+          </SimpleSection>
+        </div>
       </main>
 
       <section className="bg-stone-600 px-4 py-10 text-white mt-20">
@@ -110,7 +101,7 @@ const Home: NextPage = () => {
   );
 };
 
-const Section = ({
+const SimpleSection = ({
   children,
   title,
 }: {
@@ -119,12 +110,12 @@ const Section = ({
 }) => {
   return (
     <>
-      <section className="px-4 my-10">
+      <section className="px-4">
         <div className="flex justify-center">
           <div className="w-full lg:w-3/4 lg:flex lg:justify-between">
             <div>
               <Text className="text-3xl font-bold">{title}</Text>
-              <div className="mt-10">{children}</div>
+              <div className="mt-12">{children}</div>
             </div>
           </div>
         </div>
