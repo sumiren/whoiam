@@ -4,7 +4,7 @@ import { Text, ThemeIcon } from "@mantine/core";
 import { IconBrandTwitter, IconBrandFacebook } from "@tabler/icons";
 import { ViewButton } from "../components/view-button";
 import { BlogList } from "../components/blog-list";
-import { Portfolio, PortfolioList } from "../components/portfolio-list";
+import { PortfolioList } from "../components/portfolio-list";
 import { SimpleHeadlineAndTitleSection } from "../components/simple-headline-and-title-section";
 import {
   GitHubRepository,
@@ -12,22 +12,13 @@ import {
 } from "../components/github-repository-list";
 import { Tweet, TwitterList } from "../components/twitter-list";
 import PaddingXWrapper from "../components/padding-x-wrapper";
+import { DummyBlogPostsState } from "../test-data/dummy-blog-posts-state";
+import { dummyPortfolios } from "../test-data/dummy-portfolios";
 
 const Home: NextPage = () => {
   const pink = "bg-pink-600";
-  const blogPosts = [...Array(5)].map((_) => ({
-    header: "This is a header",
-    description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    date: "2022.07.11",
-  }));
-  const portfolios: Portfolio[] = [...Array(7)].map((_) => ({
-    thumbnail: "/portfolio-thumbnail.png",
-    title: "sumiren ブログ",
-    description:
-      "技術ブログをやっています。フルスタックエンジニアの浅く広めの技術発信が中心です。月に4本くらい発信します",
-    period: "2022.05 -",
-  }));
+  const dummyBlogPostsState = new DummyBlogPostsState();
+
   const repositories: GitHubRepository[] = [...Array(2)].map((_) => ({
     name: "sumiren/bookapp",
     description:
@@ -92,7 +83,10 @@ const Home: NextPage = () => {
         <PaddingXWrapper>
           <div className="mt-10">
             <SimpleHeadlineAndTitleSection headline="Blog">
-              <BlogList blogPosts={blogPosts} />
+              <BlogList
+                blogPosts={dummyBlogPostsState.blogPosts}
+                onlySummary={true}
+              />
               <div className="flex justify-center mt-10">
                 <ViewButton text="View All" href="/blog"></ViewButton>
               </div>
@@ -101,7 +95,7 @@ const Home: NextPage = () => {
 
           <div className="mt-20 lg:mt-32">
             <SimpleHeadlineAndTitleSection headline="Portfolio">
-              <PortfolioList portfolios={portfolios} />
+              <PortfolioList portfolios={dummyPortfolios} />
               <div className="flex justify-center mt-10">
                 <ViewButton text="View All" href="/blog"></ViewButton>
               </div>
