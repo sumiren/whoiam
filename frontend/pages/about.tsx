@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import { Text, ThemeIcon } from "@mantine/core";
 import { IconBrandTwitter, IconBrandFacebook } from "@tabler/icons";
@@ -17,9 +17,7 @@ const About: NextPage = () => {
       <main>
         <section className={pink + " px-4 py-10 text-white"}>
           <Text className="text-4xl font-bold">Sumiren Portfolio</Text>
-          <Text className="mt-2 text-l font-semibold">
-            Aboutページです
-          </Text>
+          <Text className="mt-2 text-l font-semibold">Aboutページです</Text>
           <div className="mt-10">
             <ThemeIcon variant="filled" className={pink}>
               <IconBrandTwitter></IconBrandTwitter>
@@ -56,6 +54,5 @@ const About: NextPage = () => {
     </div>
   );
 };
-
 
 export default About;
