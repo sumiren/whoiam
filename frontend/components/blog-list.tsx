@@ -1,4 +1,4 @@
-import { List, Text} from "@mantine/core";
+import { List, Text } from "@mantine/core";
 
 export interface BlogListProps {
   blogPosts: BlogPost[];

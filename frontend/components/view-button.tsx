@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button, useMantineColorScheme} from "@mantine/core";
+import { Button, useMantineColorScheme } from "@mantine/core";
 
 export interface ViewButtonProps {
   text: string;
@@ -19,7 +19,7 @@ export const ViewButton = ({ text, href }: ViewButtonProps) => {
           radius="xl"
           color="dark"
           className="mt-10"
-          size="md"
+          size="xl"
         >
           {text}
         </Button>

@@ -1,14 +1,11 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import {
-  Text,
-  ThemeIcon,
-} from "@mantine/core";
+import { Text, ThemeIcon } from "@mantine/core";
 import { IconBrandTwitter, IconBrandFacebook } from "@tabler/icons";
-import { ReactNode } from "react";
 import { ViewButton } from "../components/view-button";
 import { BlogList } from "../components/blog-list";
 import { Portfolio, PortfolioList } from "../components/portfolio-list";
+import { SimpleSection } from "../components/simple-section";
 
 const Home: NextPage = () => {
   const pink = "bg-pink-600";
@@ -98,29 +95,6 @@ const Home: NextPage = () => {
         <Text className="text-4xl font-bold mt-4">テスト文言</Text>
       </section>
     </div>
-  );
-};
-
-const SimpleSection = ({
-  children,
-  title,
-}: {
-  children: ReactNode;
-  title: string;
-}) => {
-  return (
-    <>
-      <section className="px-4">
-        <div className="flex justify-center">
-          <div className="w-full lg:w-3/4 lg:flex lg:justify-between">
-            <div>
-              <Text className="text-3xl font-bold">{title}</Text>
-              <div className="mt-12">{children}</div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
   );
 };
 
