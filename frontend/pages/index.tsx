@@ -20,7 +20,7 @@ const Home: NextPage = () => {
       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
     date: "2022.07.11",
   }));
-  const portfolios: Portfolio[] = [...Array(2)].map((_) => ({
+  const portfolios: Portfolio[] = [...Array(7)].map((_) => ({
     thumbnail: "/portfolio-thumbnail.png",
     title: "sumiren ブログ",
     description:

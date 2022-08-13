@@ -1,4 +1,4 @@
-import { List, Text, Image, useMantineColorScheme } from "@mantine/core";
+import { Text, Image, useMantineColorScheme, Box } from "@mantine/core";
 
 export interface PortfolioListProps {
   portfolios: Portfolio[];
@@ -16,23 +16,25 @@ export const PortfolioList = ({ portfolios }: PortfolioListProps) => {
   const light = colorScheme !== "dark";
 
   return (
-    <List>
+    <div className="lg:grid grid-cols-3 gap-0 lg:gap-x-8 lg:gap-y-12">
       {portfolios.map((item, index) => {
         return (
-          <List.Item key={index}>
-            <div className={index ? "mt-16" : undefined}>
+          <Box key={index}>
+            <div className={index ? "mt-8 lg:mt-0" : undefined}>
               <Image
                 src={item.thumbnail}
                 alt={item.title + " image"}
-                className={light ? "border-2 border-m_dark-1" : undefined}
+                className={light ? "border-4 border-m_gray-2" : undefined}
               />
-              <Text className="mt-4 text-2xl">{item.title}</Text>
+              <Text className="mt-4 text-2xl font-semibold">{item.title}</Text>
               <Text className="mt-4 text-lg">{item.description}</Text>
-              <Text className="mt-4 text-sm">{item.period}</Text>
+              <Text className="mt-4 text-sm text-m_dark-2 font-semibold">
+                {item.period}
+              </Text>
             </div>
-          </List.Item>
+          </Box>
         );
       })}
-    </List>
+    </div>
   );
 };
