@@ -70,8 +70,8 @@ export const GitHubRepositoryList = ({
                           background: toHex(pie.color),
                         }}
                       ></div>
-                      <Text className="ml-2 text-xs">{pie.tech}</Text>
-                      <Text className="ml-2 text-xs">{pie.percentage}%</Text>
+                      <Text className="ml-1 text-xs">{pie.tech}</Text>
+                      <Text className="ml-1 text-xs">{pie.percentage}%</Text>
                     </div>
                   );
                 })}
