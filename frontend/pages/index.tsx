@@ -83,9 +83,7 @@ const Home: NextPage = () => {
         <PaddingXWrapper>
           <div className="mt-10">
             <SimpleHeadlineAndTitleSection headline="Blog">
-              <BlogList
-                blogPosts={dummyBlogPostsState.blogPosts}
-              />
+              <BlogList blogPosts={dummyBlogPostsState.blogPosts} />
               <div className="flex justify-center mt-10">
                 <ViewButton text="View All" href="/blog"></ViewButton>
               </div>
