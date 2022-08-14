@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button, useMantineColorScheme } from "@mantine/core";
+import { Button } from "@mantine/core";
 
 export interface ViewButtonProps {
   text: string;
@@ -7,19 +7,10 @@ export interface ViewButtonProps {
 }
 
 export const ViewButton = ({ text, href }: ViewButtonProps) => {
-  const { colorScheme } = useMantineColorScheme();
-  const dark = colorScheme === "dark";
-
   return (
     <>
       <Link href={href} passHref>
-        <Button
-          component="a"
-          variant={dark ? "white" : "filled"}
-          radius="xl"
-          color="dark"
-          size="xl"
-        >
+        <Button component="a" size="xl">
           {text}
         </Button>
       </Link>

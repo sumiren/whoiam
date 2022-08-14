@@ -2,13 +2,14 @@ import { AppShell, Footer, Text } from "@mantine/core";
 import { ReactElement, useState } from "react";
 import { Header } from "../components/header";
 import { HeaderMenuOverlay } from "../components/header-menu-overlay";
+import { pageLinks } from "../lib/page-links";
 
 export const Layout = ({ children }: { children: ReactElement }) => {
   const [headerMenuOverlayOpened, setHeaderMenuOverlayOpened] = useState(false);
-
   return (
     <>
       <HeaderMenuOverlay
+        links={pageLinks}
         headerMenuOverlayOpenedState={headerMenuOverlayOpened}
         setState={setHeaderMenuOverlayOpened}
       />
@@ -19,6 +20,7 @@ export const Layout = ({ children }: { children: ReactElement }) => {
         }}
         header={
           <Header
+            links={pageLinks}
             burgerOpenedState={headerMenuOverlayOpened}
             setState={setHeaderMenuOverlayOpened}
           ></Header>

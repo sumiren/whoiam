@@ -4,11 +4,13 @@ import Link from "next/link";
 import { useScrollLock } from "@mantine/hooks";
 
 interface HeaderProps {
+  links: { href: string; text: string }[];
   headerMenuOverlayOpenedState: boolean;
   setState: Dispatch<SetStateAction<boolean>>;
 }
 
 export const HeaderMenuOverlay = ({
+  links,
   headerMenuOverlayOpenedState,
   setState,
 }: HeaderProps) => {
@@ -28,17 +30,19 @@ export const HeaderMenuOverlay = ({
           opacity="1"
         >
           <List className="mt-16">
-            <List.Item
-              className={listItemClass}
-              onClick={() => {
-                setState(false);
-              }}
-            >
-              <Link href="/about">About</Link>
-            </List.Item>
-            <List.Item className={listItemClass}>Blog</List.Item>
-            <List.Item className={listItemClass}>Portfolio</List.Item>
-            <List.Item className={listItemClass}>Contact</List.Item>
+            {links.map((item, index) => {
+              return (
+                <List.Item
+                  className={listItemClass}
+                  onClick={() => {
+                    setState(false);
+                  }}
+                  key={index}
+                >
+                  <Link href={item.href}>{item.text}</Link>
+                </List.Item>
+              );
+            })}
           </List>
         </Overlay>
       )}

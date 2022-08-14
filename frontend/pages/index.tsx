@@ -12,12 +12,12 @@ import {
 } from "../components/github-repository-list";
 import { Tweet, TwitterList } from "../components/twitter-list";
 import PaddingXWrapper from "../components/padding-x-wrapper";
-import { DummyBlogPostsState } from "../test-data/dummy-blog-posts-state";
-import { dummyPortfolios } from "../test-data/dummy-portfolios";
+import { useDummyBlogPostsState } from "../lib/dummy-blog-posts-state";
+import { dummyPortfolios } from "../lib/dummy-portfolios";
 
 const Home: NextPage = () => {
   const pink = "bg-pink-600";
-  const dummyBlogPostsState = new DummyBlogPostsState();
+  const dummyBlogPostsState = useDummyBlogPostsState();
 
   const repositories: GitHubRepository[] = [...Array(2)].map((_) => ({
     name: "sumiren/bookapp",
@@ -83,10 +83,7 @@ const Home: NextPage = () => {
         <PaddingXWrapper>
           <div className="mt-10">
             <SimpleHeadlineAndTitleSection headline="Blog">
-              <BlogList
-                blogPosts={dummyBlogPostsState.blogPosts}
-                onlySummary={true}
-              />
+              <BlogList blogPosts={dummyBlogPostsState.blogPosts} />
               <div className="flex justify-center mt-10">
                 <ViewButton text="View All" href="/blog"></ViewButton>
               </div>
@@ -97,7 +94,7 @@ const Home: NextPage = () => {
             <SimpleHeadlineAndTitleSection headline="Portfolio">
               <PortfolioList portfolios={dummyPortfolios} />
               <div className="flex justify-center mt-10">
-                <ViewButton text="View All" href="/blog"></ViewButton>
+                <ViewButton text="View All" href="/portfolio"></ViewButton>
               </div>
             </SimpleHeadlineAndTitleSection>
           </div>
