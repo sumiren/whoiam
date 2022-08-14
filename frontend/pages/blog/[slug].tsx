@@ -4,6 +4,7 @@ import SimpleHeadlineAndTitleSection from "../../components/simple-headline-and-
 import { BlogPost as BlogPostData } from "../../components/blog-list";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { dummyBlogPosts } from "../../lib/dummy-blog-posts-state";
+import { Text } from "@mantine/core";
 
 const BlogPost = ({ blogPost }: { blogPost: BlogPostData }) => {
   return (
@@ -16,7 +17,10 @@ const BlogPost = ({ blogPost }: { blogPost: BlogPostData }) => {
       <main>
         <PaddingXWrapper className="pt-8">
           <SimpleHeadlineAndTitleSection headline={blogPost.header}>
-            <div></div>
+            <Text className="mt-4 text-md font-bold text-m_dark-2">
+              {blogPost.date}
+            </Text>
+            <Text className="mt-4 text-lg">{blogPost.description}</Text>
           </SimpleHeadlineAndTitleSection>
         </PaddingXWrapper>
       </main>

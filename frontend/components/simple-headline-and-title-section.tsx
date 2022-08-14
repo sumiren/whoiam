@@ -10,7 +10,7 @@ export const SimpleHeadlineAndTitleSection = ({
 }) => {
   return (
     <div className="w-full">
-      <Text className="text-3xl font-bold border-b border-m_gray-2 pb-6">
+      <Text className="text-3xl font-bold border-0 border-b border-m_gray-2 border-solid pb-6">
         {headline}
       </Text>
       <div className="mt-8">{children}</div>
