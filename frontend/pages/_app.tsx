@@ -79,6 +79,7 @@ export const MyApp = ({ Component, pageProps }: AppProps) => {
                 },
               },
             },
+            fontFamily: "Avenir Next",
             colors: {
               // override dark colors to change them for all components
               dark: [
