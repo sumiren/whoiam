@@ -44,8 +44,9 @@ const InfiniteScrollArea = ({ loadMoreData }: InfiniteScrollAreaProps) => {
           )}
         </Transition>
         <div
+          role="note"
           ref={ref}
-          className={`h-1 ${loading ? "hidden" : "block"}`}
+          className={`h-1 ${loading || !moreDataYet ? "hidden" : "block"}`}
         ></div>
       </div>
     </>
