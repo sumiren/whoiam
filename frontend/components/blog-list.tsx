@@ -6,7 +6,7 @@ export interface BlogListProps {
 }
 
 export interface BlogPost {
-  id: string,
+  id: string;
   header: string;
   description: string;
   date: string;
@@ -23,7 +23,11 @@ export const BlogList = (props: BlogListProps) => {
             return (
               <List.Item key={index}>
                 <div className={index ? "mt-8" : ""}>
-                  <Link href={`/blog/${item.id}`}><Text className="text-2xl" component="a">{item.header}</Text></Link>
+                  <Link href={`/blog/${item.id}`}>
+                    <Text className="text-2xl" component="a">
+                      {item.header}
+                    </Text>
+                  </Link>
                   <Text className="mt-4 text-base" lineClamp={2}>
                     {item.description}
                   </Text>

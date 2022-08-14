@@ -39,7 +39,9 @@ export const HeaderMenuOverlay = ({
                   }}
                   key={index}
                 >
-                  <Link href={item.href}><a>{item.text}</a></Link>
+                  <Link href={item.href}>
+                    <a>{item.text}</a>
+                  </Link>
                 </List.Item>
               );
             })}

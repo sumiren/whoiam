@@ -1,12 +1,11 @@
 import Head from "next/head";
 import PaddingXWrapper from "../../components/padding-x-wrapper";
 import SimpleHeadlineAndTitleSection from "../../components/simple-headline-and-title-section";
-import {BlogPost as BlogPostData} from "../../components/blog-list";
-import {GetStaticPaths, GetStaticProps} from "next";
-import {dummyBlogPosts} from "../../lib/dummy-blog-posts-state";
+import { BlogPost as BlogPostData } from "../../components/blog-list";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { dummyBlogPosts } from "../../lib/dummy-blog-posts-state";
 
-const BlogPost = ({blogPost}: {blogPost: BlogPostData}) => {
-
+const BlogPost = ({ blogPost }: { blogPost: BlogPostData }) => {
   return (
     <div>
       <Head>
@@ -23,25 +22,29 @@ const BlogPost = ({blogPost}: {blogPost: BlogPostData}) => {
       </main>
     </div>
   );
-}
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: (await fetchBlogPosts()).map(blogPost => ({ params: { slug: blogPost.id  }})),
+    paths: (await fetchBlogPosts()).map((blogPost) => ({
+      params: { slug: blogPost.id },
+    })),
     fallback: false, // can also be true or 'blocking'
-  }
-}
+  };
+};
 export const getStaticProps: GetStaticProps = async (context) => {
-  const blogPost = (await fetchBlogPosts()).filter(item => item.id === ((context.params as any).slug))[0];
+  const blogPost = (await fetchBlogPosts()).filter(
+    (item) => item.id === (context.params as any).slug
+  )[0];
   return {
     props: {
-      blogPost
-    }
-  }
-}
+      blogPost,
+    },
+  };
+};
 
 const fetchBlogPosts = async () => {
   return dummyBlogPosts;
-}
+};
 
-export default BlogPost
+export default BlogPost;
