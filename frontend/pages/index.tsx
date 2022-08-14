@@ -12,12 +12,12 @@ import {
 } from "../components/github-repository-list";
 import { Tweet, TwitterList } from "../components/twitter-list";
 import PaddingXWrapper from "../components/padding-x-wrapper";
-import { DummyBlogPostsState } from "../lib/dummy-blog-posts-state";
+import { useDummyBlogPostsState } from "../lib/dummy-blog-posts-state";
 import { dummyPortfolios } from "../lib/dummy-portfolios";
 
 const Home: NextPage = () => {
   const pink = "bg-pink-600";
-  const dummyBlogPostsState = new DummyBlogPostsState();
+  const dummyBlogPostsState = useDummyBlogPostsState();
 
   const repositories: GitHubRepository[] = [...Array(2)].map((_) => ({
     name: "sumiren/bookapp",

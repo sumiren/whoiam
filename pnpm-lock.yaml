@@ -17,6 +17,7 @@ importers:
       '@types/react': 18.0.17
       '@types/react-dom': 18.0.6
       autoprefixer: ^10.4.8
+      cookies-next: ^2.1.1
       eslint: 8.21.0
       eslint-config-next: 12.2.4
       eslint-config-prettier: ^8.5.0
@@ -35,6 +36,7 @@ importers:
       '@mantine/hooks': 5.1.1_react@18.2.0
       '@mantine/next': 5.1.1_fzzahos7erm5azzrmprubckena
       '@tabler/icons': 1.82.0_biqbaboplfbrettd7655fr4n2y
+      cookies-next: 2.1.1
       next: 12.2.4_n4jygvn2hj75s7kw7xng46hwly
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -867,9 +869,17 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
+  /@types/cookie/0.4.1:
+    resolution: {integrity: sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==}
+    dev: false
+
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
+
+  /@types/node/16.11.48:
+    resolution: {integrity: sha512-Z9r9UWlNeNkYnxybm+1fc0jxUNjZqRekTAr1pG0qdXe9apT9yCiqk1c4VvKQJsFpnchU4+fLl25MabSLA2wxIw==}
+    dev: false
 
   /@types/node/18.6.5:
     resolution: {integrity: sha512-Xjt5ZGUa5WusGZJ4WJPbOT8QOqp6nDynVFRKcUt32bOgvXEoc6o085WNkYTMO7ifAj2isEfQQ2cseE+wT6jsRw==}
@@ -1244,6 +1254,19 @@ packages:
     resolution: {integrity: sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA==}
     dependencies:
       safe-buffer: 5.1.2
+    dev: false
+
+  /cookie/0.4.2:
+    resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
+    engines: {node: '>= 0.6'}
+    dev: false
+
+  /cookies-next/2.1.1:
+    resolution: {integrity: sha512-AZGZPdL1hU3jCjN2UMJTGhLOYzNUN9Gm+v8BdptYIHUdwz397Et1p+sZRfvAl8pKnnmMdX2Pk9xDRKCGBum6GA==}
+    dependencies:
+      '@types/cookie': 0.4.1
+      '@types/node': 16.11.48
+      cookie: 0.4.2
     dev: false
 
   /core-js-pure/3.24.1:

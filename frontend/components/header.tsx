@@ -61,7 +61,7 @@ export const Header = ({ links, setState, burgerOpenedState }: HeaderProps) => {
           setState(!burgerOpenedState);
         }}
         color={burgerOpenedState ? "white" : undefined}
-        className="z-50 fixed top-4 left-4 lg:hidden"
+        className="z-40 fixed top-4 left-4 lg:hidden"
       />
     </>
   );
