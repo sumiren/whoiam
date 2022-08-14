@@ -32,20 +32,22 @@ const InfiniteScrollArea = ({ loadMoreData }: InfiniteScrollAreaProps) => {
 
   return (
     <>
-      <Transition transition="fade" mounted={loading} duration={2000}>
-        {(styles) => (
-          <Loader
-            style={{ ...styles }}
-            className={`mt-10`}
-            m={"auto"}
-            color="red.5"
-          />
-        )}
-      </Transition>
-      <div
-        ref={ref}
-        className={`h-1 ${loading || !moreDataYet ? "hidden" : "block"}`}
-      ></div>
+      <div className={!moreDataYet ? "hidden" : "block"}>
+        <Transition transition="fade" mounted={loading} duration={2000}>
+          {(styles) => (
+            <Loader
+              style={{ ...styles }}
+              className={`mt-10`}
+              m={"auto"}
+              color="red.5"
+            />
+          )}
+        </Transition>
+        <div
+          ref={ref}
+          className={`h-1 ${loading ? "hidden" : "block"}`}
+        ></div>
+      </div>
     </>
   );
 };

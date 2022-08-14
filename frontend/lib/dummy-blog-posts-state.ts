@@ -26,7 +26,7 @@ class DummyBlogPostsState {
     await delay(3000);
     const moreBlogPosts = createDummyPosts();
     this.setBlogPosts([...this.blogPosts, ...moreBlogPosts]);
-    return { moreDataYet: this.blogPosts.length < 20 };
+    return { moreDataYet: this.blogPosts.length < 10 };
   }
 }
 
