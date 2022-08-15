@@ -2,8 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import SimpleHeadlineAndTitleSection from "../components/simple-headline-and-title-section";
 import PaddingXWrapper from "../components/padding-x-wrapper";
-import { PortfolioList } from "../components/portfolio-list";
-import { dummyPortfolios } from "../lib/dummy-portfolios";
+import {Group, TextInput, Button, Textarea} from "@mantine/core";
 
 const Contact: NextPage = () => {
   return (
@@ -15,8 +14,29 @@ const Contact: NextPage = () => {
       </Head>
       <main>
         <PaddingXWrapper className="pt-8">
-          <SimpleHeadlineAndTitleSection headline="Portfolio">
-            <PortfolioList portfolios={dummyPortfolios} />
+          <SimpleHeadlineAndTitleSection headline="Contact">
+            {/*<form onSubmit={form.onSubmit((values) => console.log(values))}>*/}
+            <form>
+              <TextInput
+                required
+                label="Email"
+                placeholder="your@email.com"
+              />
+              <TextInput
+                required
+                label="Email"
+                placeholder="your@email.com"
+              />
+              <Textarea
+                required
+                label="Email"
+                placeholder="your@email.com"
+              />
+
+              <Group position="center" mt="md">
+                <Button type="submit">Submit</Button>
+              </Group>
+            </form>
           </SimpleHeadlineAndTitleSection>
         </PaddingXWrapper>
       </main>
