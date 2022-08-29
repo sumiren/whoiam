@@ -1,13 +1,22 @@
 import type { NextPage } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import SimpleHeadlineAndTitleSection from "../components/simple-headline-and-title-section";
 import PaddingXWrapper from "../components/padding-x-wrapper";
 import { BlogList } from "../components/blog-list";
-import { useDummyBlogPostsState } from "../lib/dummy-blog-posts-state";
 import InfiniteScrollArea from "../components/infinite-scroll-area";
+import { BlogPost } from "../types/blog-post";
+import {
+  fetchBlogRecords,
+  useLoaderSource,
+} from "../lib/microcms-blog-gateway";
 
-const Blog: NextPage = () => {
-  const dummyBlogPostsState = useDummyBlogPostsState();
+type Props = {
+  blogPosts: BlogPost[];
+};
+
+const Blog: NextPage<Props> = ({ blogPosts }: Props) => {
+  const [initialPosts, loadMorePosts] = useLoaderSource(blogPosts);
   return (
     <div>
       <Head>
@@ -18,17 +27,24 @@ const Blog: NextPage = () => {
       <main>
         <PaddingXWrapper className="pt-8">
           <SimpleHeadlineAndTitleSection headline="Blog">
-            <BlogList blogPosts={dummyBlogPostsState.blogPosts} />
-            <InfiniteScrollArea
-              loadMoreData={async () =>
-                await dummyBlogPostsState.loadMorePosts()
-              }
-            />
+            <BlogList blogPosts={initialPosts} />
+            <InfiniteScrollArea loadMoreData={loadMorePosts} />
           </SimpleHeadlineAndTitleSection>
         </PaddingXWrapper>
       </main>
     </div>
   );
+};
+
+export const getStaticProps: GetStaticProps<
+  Props,
+  { slug: string }
+> = async () => {
+  return {
+    props: {
+      blogPosts: await fetchBlogRecords(),
+    },
+  };
 };
 
 export default Blog;

@@ -1,15 +1,9 @@
 import { List, Text } from "@mantine/core";
 import Link from "next/link";
+import { BlogPost } from "../types/blog-post";
 
 export interface BlogListProps {
   blogPosts: BlogPost[];
-}
-
-export interface BlogPost {
-  id: string;
-  header: string;
-  description: string;
-  date: string;
 }
 
 export const BlogList = (props: BlogListProps) => {
