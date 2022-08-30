@@ -18,14 +18,16 @@ export const BlogList = (props: BlogListProps) => {
               <List.Item key={index}>
                 <div className={index ? "mt-8" : ""}>
                   <Link href={`/blog/${item.id}`}>
-                    <Text className="text-2xl" component="a">
-                      {item.header}
-                    </Text>
+                    <a>
+                      <div>
+                        <Text className="text-2xl">{item.header}</Text>
+                        <Text className="mt-4 text-base" lineClamp={2}>
+                          {item.description}
+                        </Text>
+                        <Text className="mt-4 text-sm">{item.date}</Text>
+                      </div>
+                    </a>
                   </Link>
-                  <Text className="mt-4 text-base" lineClamp={2}>
-                    {item.description}
-                  </Text>
-                  <Text className="mt-4 text-sm">{item.date}</Text>
                 </div>
               </List.Item>
             );

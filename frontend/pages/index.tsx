@@ -12,7 +12,7 @@ import {
 } from "../components/github-repository-list";
 import { Tweet, TwitterList } from "../components/twitter-list";
 import PaddingXWrapper from "../components/padding-x-wrapper";
-import { fetchBlogRecords } from "../lib/microcms-blog-gateway";
+import { fetchBlogPosts } from "../lib/microcms-blog-gateway";
 import { BlogPost } from "../types/blog-post";
 import { dummyPortfolios } from "../lib/dummy-portfolios";
 
@@ -87,7 +87,7 @@ const Home: NextPage<Props> = ({ blogPosts }: Props) => {
         <PaddingXWrapper>
           <div className="mt-10">
             <SimpleHeadlineAndTitleSection headline="Blog">
-              <BlogList blogPosts={blogPosts.slice(0,3)} />
+              <BlogList blogPosts={blogPosts.slice(0, 3)} />
               <div className="flex justify-center mt-10">
                 <ViewButton text="View All" href="/blog"></ViewButton>
               </div>
@@ -137,7 +137,7 @@ export const getStaticProps: GetStaticProps<
 > = async () => {
   return {
     props: {
-      blogPosts: await fetchBlogRecords(),
+      blogPosts: await fetchBlogPosts(),
     },
   };
 };
