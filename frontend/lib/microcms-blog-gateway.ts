@@ -3,12 +3,20 @@ import { stripHtml } from "string-strip-html";
 import { format } from "date-fns";
 import { BlogPost } from "../types/blog-post";
 import { useState } from "react";
+import { Contact } from "../types/contact";
 
 export type BlogRecord = {
   id: string;
   header: string;
   content: string;
   publishedDate: string;
+};
+
+export type ContactRecord = {
+  id: string;
+  email: string,
+  name: string,
+  message: string
 };
 
 type LoaderSource = (
@@ -31,6 +39,14 @@ export const fetchBlogPost = async (id: BlogPost["id"]) => {
   return toBlogPost(blogRecord);
 };
 
+export const insertContact = async (contactContent: Omit<Contact, "id">) => {
+  const client = getClient();
+  await client.create<Omit<ContactRecord, "id">>({
+    endpoint: "contacts",
+    content: contactContent
+  });
+};
+
 export const useLoaderSource: LoaderSource = (blogPosts: BlogPost[]) => {
   const [limitedBlogPosts, setLimitedBlogPosts] = useState(
     blogPosts.slice(0, 1)
@@ -49,9 +65,11 @@ const delay = async (ms: number) => {
 };
 
 const getClient = () => {
+  console.log(process.env.MICROCMS_DOMAIN_NAME)
+  console.log(process.env.MICROCMS_ADMIN_KEY)
   return createClient({
-    serviceDomain: process.env.NEXT_PUBLIC_MICROCMS_DOMAIN_NAME!,
-    apiKey: process.env.NEXT_PUBLIC_MICROCMS_BLOGS_READ_KEY!,
+    serviceDomain: process.env.MICROCMS_DOMAIN_NAME!,
+    apiKey: process.env.MICROCMS_ADMIN_KEY!,
   });
 };
 
