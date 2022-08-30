@@ -11,34 +11,24 @@ export type BlogRecord = {
   publishedDate: string;
 };
 
-type Fetch = () => Promise<BlogPost[]>;
 type LoaderSource = (
   blogPosts: BlogPost[]
 ) => [BlogPost[], () => Promise<{ moreDataYet: boolean }>];
 
-let cache: BlogPost[] | undefined;
+export const fetchBlogPosts = async () => {
+  const client = getClient();
+  return (await client.getList<BlogRecord>({ endpoint: "blogs" })).contents.map(
+    toBlogPost
+  );
+};
 
-export const fetchBlogRecords: Fetch = async () => {
-  if (cache !== undefined) {
-    return cache;
-  }
-
-  const client = createClient({
-    serviceDomain: "n5gsdhwxor",
-    apiKey: "143c3885c93248da94844ed2723dd3c365fb",
+export const fetchBlogPost = async (id: BlogPost["id"]) => {
+  const client = getClient();
+  const blogRecord = await client.getListDetail<BlogRecord>({
+    endpoint: "blogs",
+    contentId: id,
   });
-  cache = (
-    await client.getList<BlogRecord>({ endpoint: "blogs" })
-  ).contents.map((item) => ({
-    id: item.id,
-    header: item.header,
-    content: item.content,
-    description: stripHtml(item.content, {
-      stripTogetherWithTheirContents: ["h1", "h2", "h3", "h4", "h5"],
-    }).result,
-    date: format(new Date(item.publishedDate), "yyyy.MM.dd"),
-  }));
-  return cache;
+  return toBlogPost(blogRecord);
 };
 
 export const useLoaderSource: LoaderSource = (blogPosts: BlogPost[]) => {
@@ -56,4 +46,24 @@ export const useLoaderSource: LoaderSource = (blogPosts: BlogPost[]) => {
 
 const delay = async (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+const getClient = () => {
+  const client = createClient({
+    serviceDomain: "n5gsdhwxor",
+    apiKey: "143c3885c93248da94844ed2723dd3c365fb",
+  });
+  return client;
+};
+
+const toBlogPost = (blogRecord: BlogRecord) => {
+  return {
+    id: blogRecord.id,
+    header: blogRecord.header,
+    content: blogRecord.content,
+    description: stripHtml(blogRecord.content, {
+      stripTogetherWithTheirContents: ["h1", "h2", "h3", "h4", "h5"],
+    }).result,
+    date: format(new Date(blogRecord.publishedDate), "yyyy.MM.dd"),
+  };
 };
