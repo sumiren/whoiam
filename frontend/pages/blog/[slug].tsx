@@ -4,7 +4,7 @@ import SimpleHeadlineAndTitleSection from "../../components/simple-headline-and-
 import { GetStaticPaths, GetStaticProps } from "next";
 import { Text, TypographyStylesProvider } from "@mantine/core";
 import { BlogPost as BlogPostData } from "../../types/blog-post";
-import { fetchBlogPost, fetchBlogPosts } from "../../lib/microcms-blog-gateway";
+import { fetchBlogPost } from "../../lib/microcms-blog-gateway";
 import { useRouter } from "next/router";
 
 type Props = {
@@ -50,9 +50,10 @@ const BlogPost = ({ blogPost }: Props) => {
 
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   return {
-    paths: (await fetchBlogPosts()).map((blogPost) => ({
-      params: { slug: blogPost.id, data: blogPost },
-    })),
+    // paths: (await fetchBlogPosts()).map((blogPost) => ({
+    //   params: { slug: blogPost.id, data: blogPost },
+    // })),
+    paths: [],
     fallback: true,
   };
 };
@@ -60,7 +61,6 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
 export const getStaticProps: GetStaticProps<Props, { slug: string }> = async (
   context
 ) => {
-  await delay(3000);
   const blogPost = await fetchBlogPost(context.params!.slug);
   return {
     props: {
@@ -69,9 +69,4 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async (
     revalidate: 30,
   };
 };
-
-const delay = async (ms: number) => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
-
 export default BlogPost;

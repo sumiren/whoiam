@@ -6,10 +6,7 @@ import PaddingXWrapper from "../components/padding-x-wrapper";
 import { BlogList } from "../components/blog-list";
 import InfiniteScrollArea from "../components/infinite-scroll-area";
 import { BlogPost } from "../types/blog-post";
-import {
-  fetchBlogRecords,
-  useLoaderSource,
-} from "../lib/microcms-blog-gateway";
+import { fetchBlogPosts, useLoaderSource } from "../lib/microcms-blog-gateway";
 
 type Props = {
   blogPosts: BlogPost[];
@@ -42,8 +39,9 @@ export const getStaticProps: GetStaticProps<
 > = async () => {
   return {
     props: {
-      blogPosts: await fetchBlogRecords(),
+      blogPosts: await fetchBlogPosts(),
     },
+    revalidate: 30,
   };
 };
 

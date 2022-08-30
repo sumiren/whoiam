@@ -1,8 +1,8 @@
-import { createClient } from "microcms-js-sdk";
-import { stripHtml } from "string-strip-html";
-import { format } from "date-fns";
-import { BlogPost } from "../types/blog-post";
-import { useState } from "react";
+import {createClient} from "microcms-js-sdk";
+import {stripHtml} from "string-strip-html";
+import {format} from "date-fns";
+import {BlogPost} from "../types/blog-post";
+import {useState} from "react";
 
 export type BlogRecord = {
   id: string;
@@ -49,11 +49,10 @@ const delay = async (ms: number) => {
 };
 
 const getClient = () => {
-  const client = createClient({
-    serviceDomain: "n5gsdhwxor",
-    apiKey: "143c3885c93248da94844ed2723dd3c365fb",
+  return createClient({
+    serviceDomain: process.env.NEXT_PUBLIC_MICROCMS_DOMAIN_NAME!,
+    apiKey: process.env.NEXT_PUBLIC_MICROCMS_BLOGS_READ_KEY!,
   });
-  return client;
 };
 
 const toBlogPost = (blogRecord: BlogRecord) => {
