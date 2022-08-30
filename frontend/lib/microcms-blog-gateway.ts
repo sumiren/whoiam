@@ -1,8 +1,8 @@
-import {createClient} from "microcms-js-sdk";
-import {stripHtml} from "string-strip-html";
-import {format} from "date-fns";
-import {BlogPost} from "../types/blog-post";
-import {useState} from "react";
+import { createClient } from "microcms-js-sdk";
+import { stripHtml } from "string-strip-html";
+import { format } from "date-fns";
+import { BlogPost } from "../types/blog-post";
+import { useState } from "react";
 
 export type BlogRecord = {
   id: string;

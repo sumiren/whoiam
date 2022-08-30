@@ -139,6 +139,7 @@ export const getStaticProps: GetStaticProps<
     props: {
       blogPosts: await fetchBlogPosts(),
     },
+    revalidate: 30,
   };
 };
 
