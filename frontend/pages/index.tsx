@@ -12,12 +12,16 @@ import {
 } from "../components/github-repository-list";
 import { Tweet, TwitterList } from "../components/twitter-list";
 import PaddingXWrapper from "../components/padding-x-wrapper";
-import { useDummyBlogPostsState } from "../lib/dummy-blog-posts-state";
+import { fetchBlogPosts } from "../lib/microcms-blog-gateway";
+import { BlogPost } from "../types/blog-post";
 import { dummyPortfolios } from "../lib/dummy-portfolios";
 
-const Home: NextPage = () => {
+type Props = {
+  blogPosts: BlogPost[];
+};
+
+const Home: NextPage<Props> = ({ blogPosts }: Props) => {
   const pink = "bg-pink-600";
-  const dummyBlogPostsState = useDummyBlogPostsState();
 
   const repositories: GitHubRepository[] = [...Array(2)].map((_) => ({
     name: "sumiren/bookapp",
@@ -83,7 +87,7 @@ const Home: NextPage = () => {
         <PaddingXWrapper>
           <div className="mt-10">
             <SimpleHeadlineAndTitleSection headline="Blog">
-              <BlogList blogPosts={dummyBlogPostsState.blogPosts} />
+              <BlogList blogPosts={blogPosts.slice(0, 3)} />
               <div className="flex justify-center mt-10">
                 <ViewButton text="View All" href="/blog"></ViewButton>
               </div>
@@ -127,10 +131,15 @@ const Home: NextPage = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = () => {
-  console.log("get static props");
+export const getStaticProps: GetStaticProps<
+  Props,
+  { slug: string }
+> = async () => {
   return {
-    props: {},
+    props: {
+      blogPosts: await fetchBlogPosts(),
+    },
+    revalidate: 30,
   };
 };
 

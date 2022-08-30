@@ -1,12 +1,28 @@
 import Head from "next/head";
 import PaddingXWrapper from "../../components/padding-x-wrapper";
 import SimpleHeadlineAndTitleSection from "../../components/simple-headline-and-title-section";
-import { BlogPost as BlogPostData } from "../../components/blog-list";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { dummyBlogPosts } from "../../lib/dummy-blog-posts-state";
-import { Text } from "@mantine/core";
+import { Text, TypographyStylesProvider } from "@mantine/core";
+import { BlogPost as BlogPostData } from "../../types/blog-post";
+import { fetchBlogPost, fetchBlogPosts } from "../../lib/microcms-blog-gateway";
+import { useRouter } from "next/router";
 
-const BlogPost = ({ blogPost }: { blogPost: BlogPostData }) => {
+type Props = {
+  blogPost: BlogPostData;
+};
+
+const BlogPost = ({ blogPost }: Props) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return (
+      <div style={{ paddingTop: "20px" }}>
+        Congratulations! You are the first comer!
+        <br />I am rendering the page...
+      </div>
+    );
+  }
+
   return (
     <div>
       <Head>
@@ -20,7 +36,11 @@ const BlogPost = ({ blogPost }: { blogPost: BlogPostData }) => {
             <Text className="mt-4 text-md font-bold text-m_dark-2">
               {blogPost.date}
             </Text>
-            <Text className="mt-4 text-lg">{blogPost.description}</Text>
+            <TypographyStylesProvider>
+              <Text
+                dangerouslySetInnerHTML={{ __html: blogPost.content }}
+              ></Text>
+            </TypographyStylesProvider>
           </SimpleHeadlineAndTitleSection>
         </PaddingXWrapper>
       </main>
@@ -28,27 +48,24 @@ const BlogPost = ({ blogPost }: { blogPost: BlogPostData }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   return {
     paths: (await fetchBlogPosts()).map((blogPost) => ({
-      params: { slug: blogPost.id },
+      params: { slug: blogPost.id, data: blogPost },
     })),
-    fallback: false, // can also be true or 'blocking'
+    fallback: true,
   };
 };
-export const getStaticProps: GetStaticProps = async (context) => {
-  const blogPost = (await fetchBlogPosts()).filter(
-    (item) => item.id === (context.params as any).slug
-  )[0];
+
+export const getStaticProps: GetStaticProps<Props, { slug: string }> = async (
+  context
+) => {
+  const blogPost = await fetchBlogPost(context.params!.slug);
   return {
     props: {
       blogPost,
     },
+    revalidate: 30,
   };
 };
-
-const fetchBlogPosts = async () => {
-  return dummyBlogPosts;
-};
-
 export default BlogPost;

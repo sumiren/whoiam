@@ -35,12 +35,12 @@ const InfiniteScrollArea = ({ loadMoreData }: InfiniteScrollAreaProps) => {
       <div className={!moreDataYet ? "hidden" : "block"}>
         <Transition transition="fade" mounted={loading} duration={2000}>
           {(styles) => (
-            <Loader
+            <div
+              className={`mt-16 mx-auto flex justify-center`}
               style={{ ...styles }}
-              className={`mt-10`}
-              m={"auto"}
-              color="red.5"
-            />
+            >
+              <Loader color="red.5" />
+            </div>
           )}
         </Transition>
         <div

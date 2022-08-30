@@ -23,9 +23,15 @@ const Contact: NextPage = () => {
     },
   });
 
-  const handleValidationPassed = (values: FormValues) => {
-    console.log("success!");
-    console.log(values);
+  const handleValidationPassed = async (values: FormValues) => {
+    await fetch("/api/contacts", {
+      method: "POST",
+      body: JSON.stringify({
+        email: values.email,
+        name: values.name,
+        message: values.message,
+      }),
+    });
   };
 
   return (
