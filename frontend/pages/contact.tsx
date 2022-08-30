@@ -30,8 +30,8 @@ const Contact: NextPage = () => {
         email: values.email,
         name: values.name,
         message: values.message,
-      })
-    })
+      }),
+    });
   };
 
   return (

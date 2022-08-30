@@ -14,9 +14,9 @@ export type BlogRecord = {
 
 export type ContactRecord = {
   id: string;
-  email: string,
-  name: string,
-  message: string
+  email: string;
+  name: string;
+  message: string;
 };
 
 type LoaderSource = (
@@ -43,7 +43,7 @@ export const insertContact = async (contactContent: Omit<Contact, "id">) => {
   const client = getClient();
   await client.create<Omit<ContactRecord, "id">>({
     endpoint: "contacts",
-    content: contactContent
+    content: contactContent,
   });
 };
 
@@ -65,8 +65,8 @@ const delay = async (ms: number) => {
 };
 
 const getClient = () => {
-  console.log(process.env.MICROCMS_DOMAIN_NAME)
-  console.log(process.env.MICROCMS_ADMIN_KEY)
+  console.log(process.env.MICROCMS_DOMAIN_NAME);
+  console.log(process.env.MICROCMS_ADMIN_KEY);
   return createClient({
     serviceDomain: process.env.MICROCMS_DOMAIN_NAME!,
     apiKey: process.env.MICROCMS_ADMIN_KEY!,

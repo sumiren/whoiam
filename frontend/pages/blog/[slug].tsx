@@ -4,7 +4,7 @@ import SimpleHeadlineAndTitleSection from "../../components/simple-headline-and-
 import { GetStaticPaths, GetStaticProps } from "next";
 import { Text, TypographyStylesProvider } from "@mantine/core";
 import { BlogPost as BlogPostData } from "../../types/blog-post";
-import {fetchBlogPost, fetchBlogPosts} from "../../lib/microcms-blog-gateway";
+import { fetchBlogPost, fetchBlogPosts } from "../../lib/microcms-blog-gateway";
 import { useRouter } from "next/router";
 
 type Props = {
