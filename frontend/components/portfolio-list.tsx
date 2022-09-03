@@ -1,14 +1,8 @@
 import { Text, Image, useMantineColorScheme, Box } from "@mantine/core";
+import { Portfolio } from "../types/portfolio";
 
 export interface PortfolioListProps {
   portfolios: Portfolio[];
-}
-
-export interface Portfolio {
-  thumbnail: string;
-  title: string;
-  description: string;
-  period: string;
 }
 
 export const PortfolioList = ({ portfolios }: PortfolioListProps) => {
@@ -22,7 +16,7 @@ export const PortfolioList = ({ portfolios }: PortfolioListProps) => {
           <Box key={index}>
             <div className={index ? "mt-8 lg:mt-0" : undefined}>
               <Image
-                src={item.thumbnail}
+                src={item.thumbnailUrl}
                 alt={item.title + " image"}
                 className={light ? "border-4 border-m_gray-2" : undefined}
               />
