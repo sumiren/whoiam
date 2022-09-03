@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { BlogPost } from "../types/blog-post";
 import { useState } from "react";
 import { Contact } from "../types/contact";
+import { Portfolio } from "../types/portfolio";
 
 export type BlogRecord = {
   id: string;
@@ -19,6 +20,16 @@ export type ContactRecord = {
   message: string;
 };
 
+export type PortfolioRecord = {
+  id: string;
+  title: string;
+  description: string;
+  period: string;
+  thumbnail: {
+    url: string;
+  };
+};
+
 type LoaderSource = (
   blogPosts: BlogPost[]
 ) => [BlogPost[], () => Promise<{ moreDataYet: boolean }>];
@@ -28,6 +39,13 @@ export const fetchBlogPosts = async () => {
   return (await client.getList<BlogRecord>({ endpoint: "blogs" })).contents.map(
     toBlogPost
   );
+};
+
+export const fetchPortfolios = async () => {
+  const client = getClient();
+  return (
+    await client.getList<PortfolioRecord>({ endpoint: "portfolios" })
+  ).contents.map(toPortfolio);
 };
 
 export const fetchBlogPost = async (id: BlogPost["id"]) => {
@@ -82,5 +100,14 @@ const toBlogPost = (blogRecord: BlogRecord) => {
       stripTogetherWithTheirContents: ["h1", "h2", "h3", "h4", "h5"],
     }).result,
     date: format(new Date(blogRecord.publishedDate), "yyyy.MM.dd"),
+  };
+};
+
+const toPortfolio = (portfolioRecord: PortfolioRecord): Portfolio => {
+  return {
+    description: portfolioRecord.description,
+    period: portfolioRecord.period,
+    title: portfolioRecord.title,
+    thumbnailUrl: portfolioRecord.thumbnail.url,
   };
 };

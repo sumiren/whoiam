@@ -12,16 +12,19 @@ import {
 } from "../components/github-repository-list";
 import { Tweet, TwitterList } from "../components/twitter-list";
 import PaddingXWrapper from "../components/padding-x-wrapper";
-import { fetchBlogPosts } from "../lib/microcms-blog-gateway";
+import { fetchBlogPosts, fetchPortfolios } from "../lib/microcms-gateway";
 import { BlogPost } from "../types/blog-post";
-import { dummyPortfolios } from "../lib/dummy-portfolios";
+import { Portfolio } from "../types/portfolio";
+import { useLg } from "../lib/mediaqueries";
 
 type Props = {
   blogPosts: BlogPost[];
+  portfolios: Portfolio[];
 };
 
-const Home: NextPage<Props> = ({ blogPosts }: Props) => {
+const Home: NextPage<Props> = ({ blogPosts, portfolios }: Props) => {
   const pink = "bg-pink-600";
+  const lg = useLg();
 
   const repositories: GitHubRepository[] = [...Array(2)].map((_) => ({
     name: "sumiren/bookapp",
@@ -96,7 +99,9 @@ const Home: NextPage<Props> = ({ blogPosts }: Props) => {
 
           <div className="mt-20 lg:mt-32">
             <SimpleHeadlineAndTitleSection headline="Portfolio">
-              <PortfolioList portfolios={dummyPortfolios} />
+              <PortfolioList
+                portfolios={lg ? portfolios : portfolios.slice(0, 3)}
+              />
               <div className="flex justify-center mt-10">
                 <ViewButton text="View All" href="/portfolio"></ViewButton>
               </div>
@@ -131,13 +136,11 @@ const Home: NextPage<Props> = ({ blogPosts }: Props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps<
-  Props,
-  { slug: string }
-> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   return {
     props: {
       blogPosts: await fetchBlogPosts(),
+      portfolios: await fetchPortfolios(),
     },
     revalidate: 30,
   };

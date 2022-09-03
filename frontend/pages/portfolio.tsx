@@ -3,9 +3,15 @@ import Head from "next/head";
 import SimpleHeadlineAndTitleSection from "../components/simple-headline-and-title-section";
 import PaddingXWrapper from "../components/padding-x-wrapper";
 import { PortfolioList } from "../components/portfolio-list";
-import { dummyPortfolios } from "../lib/dummy-portfolios";
+import { GetStaticProps } from "next";
+import { fetchPortfolios } from "../lib/microcms-gateway";
+import { Portfolio } from "../types/portfolio";
 
-const Portfolio: NextPage = () => {
+type Props = {
+  portfolios: Portfolio[];
+};
+
+const Portfolio: NextPage<Props> = ({ portfolios }) => {
   return (
     <div>
       <Head>
@@ -16,7 +22,7 @@ const Portfolio: NextPage = () => {
       <main>
         <PaddingXWrapper className="pt-8">
           <SimpleHeadlineAndTitleSection headline="Portfolio">
-            <PortfolioList portfolios={dummyPortfolios} />
+            <PortfolioList portfolios={portfolios} />
           </SimpleHeadlineAndTitleSection>
         </PaddingXWrapper>
       </main>
@@ -25,3 +31,12 @@ const Portfolio: NextPage = () => {
 };
 
 export default Portfolio;
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  return {
+    props: {
+      portfolios: await fetchPortfolios(),
+    },
+    revalidate: 30,
+  };
+};

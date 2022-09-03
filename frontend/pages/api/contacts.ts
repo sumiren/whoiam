@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { insertContact } from "../../lib/microcms-blog-gateway";
+import { insertContact } from "../../lib/microcms-gateway";
 
 export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   // API RouteはPOSTできる権限の鍵を隠蔽したいだけのため、バリデーションは一旦オミット
