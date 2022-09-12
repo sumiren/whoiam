@@ -10,7 +10,7 @@ import {
   GitHubRepository,
   GitHubRepositoryList,
 } from "../components/github-repository-list";
-import { Tweet, TwitterList } from "../components/twitter-list";
+import { useEffect, useState } from "react";
 import PaddingXWrapper from "../components/padding-x-wrapper";
 import { fetchBlogPosts, fetchPortfolios } from "../lib/microcms-gateway";
 import { BlogPost } from "../types/blog-post";
@@ -25,7 +25,9 @@ type Props = {
 const Home: NextPage<Props> = ({ blogPosts, portfolios }: Props) => {
   const pink = "bg-pink-600";
   const lg = useLg();
-
+  const [shownPortfolios, setShownPortfolios] = useState(
+    portfolios.slice(0, 3)
+  );
   const repositories: GitHubRepository[] = [...Array(2)].map((_) => ({
     name: "sumiren/bookapp",
     description:
@@ -50,14 +52,12 @@ const Home: NextPage<Props> = ({ blogPosts, portfolios }: Props) => {
       },
     ],
   }));
-  const tweets: Tweet[] = [...Array(3)].map((_) => ({
-    avatar: "/avatar.jpeg",
-    name: "sumiren_t",
-    displayName: "sumiren",
-    date: "5月25日",
-    content:
-      "📣 新サービス「Noway Form」をリリースしました！ <br><br>Noway Formは、Notionのデータベースをもとにフォームを作成できるサービスです。これまでGoogle FormsでやっていたことがNotionだけで完結します✌✨ <br><br>試しに使っていただけると幸いです😊 <br><br><a href='https://www.noway-form.com/ja' style='text-decoration: underline'>https://www.noway-form.com/ja</a>",
-  }));
+  useEffect(() => {
+    setShownPortfolios(lg ? portfolios : portfolios.slice(0, 3));
+  }, [lg, portfolios]);
+
+  const tweets: Tweet[] = useTweets();
+  console.log("tweets " + JSON.stringify(tweets));
 
   return (
     <div>
@@ -99,9 +99,7 @@ const Home: NextPage<Props> = ({ blogPosts, portfolios }: Props) => {
 
           <div className="mt-20 lg:mt-32">
             <SimpleHeadlineAndTitleSection headline="Portfolio">
-              <PortfolioList
-                portfolios={lg ? portfolios : portfolios.slice(0, 3)}
-              />
+              <PortfolioList portfolios={shownPortfolios} />
               <div className="flex justify-center mt-10">
                 <ViewButton text="View All" href="/portfolio"></ViewButton>
               </div>

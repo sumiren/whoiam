@@ -16,17 +16,15 @@ export const MyApp = ({ Component, pageProps }: AppProps) => {
     colorSchemeInCookie === "dark" ? colorSchemeInCookie : "light";
   const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
 
-  console.log("initialColorScheme: " + initialColorScheme);
+  console.log("iniialColorScheme: " + initialColorScheme);
 
   const ref = useRef<HTMLDivElement>(null);
 
-  if (typeof document !== "undefined" && initialColorScheme === "light") {
-    const div = document.getElementById("overlay")!;
-    div.className += " opacity-0";
-  }
-
   useEffect(() => {
     const f = async () => {
+      const div = document.getElementById("overlay")!;
+      div.className += " opacity-0";
+
       if (initialColorScheme === "dark") {
         setColorScheme("dark");
         await delay(1);
@@ -34,7 +32,8 @@ export const MyApp = ({ Component, pageProps }: AppProps) => {
       }
     };
     f().then();
-  }, [initialColorScheme]);
+    // eslint-disable-next-line
+  }, []);
 
   const toggleColorScheme = (value?: ColorScheme) => {
     let nextColorScheme = value || (colorScheme === "dark" ? "light" : "dark");
