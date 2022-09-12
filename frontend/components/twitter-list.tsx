@@ -1,15 +1,9 @@
 import { List, Text, Avatar } from "@mantine/core";
+import { Tweet } from "../lib/twitter-gateway";
+import Image from "next/image";
 
 export interface TwitterListProps {
   tweets: Tweet[];
-}
-
-export interface Tweet {
-  avatar: string;
-  displayName: string;
-  name: string;
-  date: string;
-  content: string;
 }
 
 export const TwitterList = ({ tweets }: TwitterListProps) => {
@@ -41,7 +35,28 @@ export const TwitterList = ({ tweets }: TwitterListProps) => {
                   </Text>
                 </div>
                 <div className="pt-2">
-                  <div dangerouslySetInnerHTML={{ __html: item.content }} />
+                  <div
+                    className={"whitespace-pre-wrap"}
+                    dangerouslySetInnerHTML={{ __html: item.content }}
+                  />
+                  {item.images.length && (
+                    <div
+                      className={`w-full h-96 relative grid ${
+                        item.images.length > 2 ? "grid-cols-2" : "grid-cols-1"
+                      } gap-x-2 gap-y-2 mt-4`}
+                    >
+                      {item.images.map((image, i) => (
+                        <div className="relative" key={i}>
+                          <Image
+                            src={image.url}
+                            alt="twitter img"
+                            layout="fill"
+                            objectFit="contain"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
