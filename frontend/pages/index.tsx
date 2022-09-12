@@ -16,7 +16,7 @@ import { fetchBlogPosts, fetchPortfolios } from "../lib/microcms-gateway";
 import { BlogPost } from "../types/blog-post";
 import { Portfolio } from "../types/portfolio";
 import { useLg } from "../lib/mediaqueries";
-import {Tweet, TwitterList} from "../components/twitter-list";
+import { Tweet, TwitterList } from "../components/twitter-list";
 
 type Props = {
   blogPosts: BlogPost[];
@@ -149,6 +149,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     },
     revalidate: 30,
   };
-}
+};
 
 export default Home;
