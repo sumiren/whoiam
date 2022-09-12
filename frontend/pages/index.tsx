@@ -10,12 +10,13 @@ import {
   GitHubRepository,
   GitHubRepositoryList,
 } from "../components/github-repository-list";
-import { Tweet, TwitterList } from "../components/twitter-list";
+import { useEffect, useState } from "react";
 import PaddingXWrapper from "../components/padding-x-wrapper";
 import { fetchBlogPosts, fetchPortfolios } from "../lib/microcms-gateway";
 import { BlogPost } from "../types/blog-post";
 import { Portfolio } from "../types/portfolio";
 import { useLg } from "../lib/mediaqueries";
+import { Tweet, TwitterList } from "../components/twitter-list";
 
 type Props = {
   blogPosts: BlogPost[];
@@ -25,7 +26,9 @@ type Props = {
 const Home: NextPage<Props> = ({ blogPosts, portfolios }: Props) => {
   const pink = "bg-pink-600";
   const lg = useLg();
-
+  const [shownPortfolios, setShownPortfolios] = useState(
+    portfolios.slice(0, 3)
+  );
   const repositories: GitHubRepository[] = [...Array(2)].map((_) => ({
     name: "sumiren/bookapp",
     description:
@@ -50,6 +53,10 @@ const Home: NextPage<Props> = ({ blogPosts, portfolios }: Props) => {
       },
     ],
   }));
+  useEffect(() => {
+    setShownPortfolios(lg ? portfolios : portfolios.slice(0, 3));
+  }, [lg, portfolios]);
+
   const tweets: Tweet[] = [...Array(3)].map((_) => ({
     avatar: "/avatar.jpeg",
     name: "sumiren_t",
@@ -99,9 +106,7 @@ const Home: NextPage<Props> = ({ blogPosts, portfolios }: Props) => {
 
           <div className="mt-20 lg:mt-32">
             <SimpleHeadlineAndTitleSection headline="Portfolio">
-              <PortfolioList
-                portfolios={lg ? portfolios : portfolios.slice(0, 3)}
-              />
+              <PortfolioList portfolios={shownPortfolios} />
               <div className="flex justify-center mt-10">
                 <ViewButton text="View All" href="/portfolio"></ViewButton>
               </div>
