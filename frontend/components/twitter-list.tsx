@@ -39,7 +39,7 @@ export const TwitterList = ({ tweets }: TwitterListProps) => {
                     className={"whitespace-pre-wrap"}
                     dangerouslySetInnerHTML={{ __html: item.content }}
                   />
-                  {item.images.length && (
+                  {item.images.length ? (
                     <div
                       className={`w-full h-96 relative grid ${
                         item.images.length > 2 ? "grid-cols-2" : "grid-cols-1"
@@ -56,7 +56,7 @@ export const TwitterList = ({ tweets }: TwitterListProps) => {
                         </div>
                       ))}
                     </div>
-                  )}
+                  ) : undefined}
                 </div>
               </div>
             </div>
