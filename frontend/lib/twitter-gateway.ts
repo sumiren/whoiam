@@ -8,7 +8,7 @@ export const fetchTweets: () => Promise<Tweet[]> = async () => {
   const twitterPaginatedResponse = await client.tweets.usersIdTweets(
     process.env.TWITTER_USER_ID!,
     {
-      max_results: 100,
+      max_results: 5,
       "tweet.fields": ["author_id", "entities", "created_at", "attachments"],
       "media.fields": [
         "url",
