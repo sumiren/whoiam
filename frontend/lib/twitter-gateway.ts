@@ -31,10 +31,6 @@ export const fetchTweets: () => Promise<Tweet[]> = async () => {
     }
   );
 
-  console.log(JSON.stringify(twitterPaginatedResponse.data, undefined, 2));
-  console.log(JSON.stringify(twitterPaginatedResponse.includes, undefined, 2));
-  console.log(JSON.stringify(twitterAuthorResponse.data, undefined, 2));
-
   const media: {
     height?: number | undefined;
     media_key?: string | undefined;

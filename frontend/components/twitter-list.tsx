@@ -45,8 +45,8 @@ export const TwitterList = ({ tweets }: TwitterListProps) => {
                         item.images.length > 2 ? "grid-cols-2" : "grid-cols-1"
                       } gap-x-2 gap-y-2 mt-4`}
                     >
-                      {item.images.map((image, i) => (
-                        <div className="relative" key={i}>
+                      {item.images.map((image) => (
+                        <div className="relative" key={image.url}>
                           <Image
                             src={image.url}
                             alt="twitter img"

@@ -60,7 +60,6 @@ const Home: NextPage<Props> = ({ blogPosts, portfolios }: Props) => {
   }, [lg, portfolios]);
 
   const tweets: Tweet[] = useTweets();
-  console.log("tweets " + JSON.stringify(tweets));
 
   return (
     <div>
