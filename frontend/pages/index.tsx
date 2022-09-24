@@ -16,7 +16,9 @@ import { fetchBlogPosts, fetchPortfolios } from "../lib/microcms-gateway";
 import { BlogPost } from "../types/blog-post";
 import { Portfolio } from "../types/portfolio";
 import { useLg } from "../lib/mediaqueries";
-import { Tweet, TwitterList } from "../components/twitter-list";
+import { TwitterList } from "../components/twitter-list";
+import { Tweet } from "../lib/twitter-gateway";
+import { useTweets } from "../state/useTweets";
 
 type Props = {
   blogPosts: BlogPost[];
@@ -57,14 +59,7 @@ const Home: NextPage<Props> = ({ blogPosts, portfolios }: Props) => {
     setShownPortfolios(lg ? portfolios : portfolios.slice(0, 3));
   }, [lg, portfolios]);
 
-  const tweets: Tweet[] = [...Array(3)].map((_) => ({
-    avatar: "/avatar.jpeg",
-    name: "sumiren_t",
-    displayName: "sumiren",
-    date: "5月25日",
-    content:
-      "📣 新サービス「Noway Form」をリリースしました！ <br><br>Noway Formは、Notionのデータベースをもとにフォームを作成できるサービスです。これまでGoogle FormsでやっていたことがNotionだけで完結します✌✨ <br><br>試しに使っていただけると幸いです😊 <br><br><a href='https://www.noway-form.com/ja' style='text-decoration: underline'>https://www.noway-form.com/ja</a>",
-  }));
+  const tweets: Tweet[] = useTweets();
 
   return (
     <div>
