@@ -6,9 +6,7 @@ import { ViewButton } from "../components/view-button";
 import { BlogList } from "../components/blog-list";
 import { PortfolioList } from "../components/portfolio-list";
 import { SimpleHeadlineAndTitleSection } from "../components/simple-headline-and-title-section";
-import {
-  GitHubRepositoryList,
-} from "../components/github-repository-list";
+import { GitHubRepositoryList } from "../components/github-repository-list";
 import { useEffect, useState } from "react";
 import PaddingXWrapper from "../components/padding-x-wrapper";
 import { fetchBlogPosts, fetchPortfolios } from "../lib/microcms-gateway";
@@ -16,8 +14,8 @@ import { BlogPost } from "../types/blog-post";
 import { Portfolio } from "../types/portfolio";
 import { useLg } from "../lib/mediaqueries";
 import { TwitterList } from "../components/twitter-list";
-import { Tweet } from "../lib/twitter-gateway";
 import { useTweets } from "../state/useTweets";
+import { useRepositories } from "../state/useRepositories";
 
 type Props = {
   blogPosts: BlogPost[];
@@ -30,35 +28,12 @@ const Home: NextPage<Props> = ({ blogPosts, portfolios }: Props) => {
   const [shownPortfolios, setShownPortfolios] = useState(
     portfolios.slice(0, 3)
   );
-  const repositories = [...Array(2)].map((_) => ({
-    name: "sumiren/bookapp",
-    description:
-      "control tsundoku books and manage your life of reading nice books.",
-    stars: 30,
-    forks: 5,
-    techRatio: [
-      {
-        tech: "TypeScript",
-        percentage: 50,
-        color: "yellow.5",
-      },
-      {
-        tech: "Ruby on Rails",
-        percentage: 40,
-        color: "red.5",
-      },
-      {
-        tech: "Other",
-        percentage: 10,
-        color: "dark.0",
-      },
-    ],
-  }));
   useEffect(() => {
     setShownPortfolios(lg ? portfolios : portfolios.slice(0, 3));
   }, [lg, portfolios]);
 
-  const tweets: Tweet[] = useTweets();
+  const tweets = useTweets();
+  const repositories = useRepositories();
 
   return (
     <div>

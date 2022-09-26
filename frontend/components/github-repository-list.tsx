@@ -54,7 +54,7 @@ export const GitHubRepositoryList = ({
                       <div
                         className={`rounded-full w-2 h-2`}
                         style={{
-                          background: toHex(pie.color),
+                          background: pie.color,
                         }}
                       ></div>
                       <Text className="ml-1 text-xs">{pie.tech}</Text>
@@ -69,9 +69,4 @@ export const GitHubRepositoryList = ({
       })}
     </List>
   );
-
-  function toHex(mantineColorExpression: string): string {
-    const [colorName, index] = mantineColorExpression.split(".");
-    return theme.colors[colorName][+index];
-  }
 };

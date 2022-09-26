@@ -1,6 +1,8 @@
 import useSWR from "swr";
+import { fetcher } from "./fetcher";
+import { Tweet } from "../lib/twitter-gateway";
 
-export const useTweets = () => {
+export const useTweets: () => Tweet[] = () => {
   const { data, error } = useSWR("/api/tweets", fetcher);
   if (error) {
     throw new Error("tweets fetch error");
@@ -10,5 +12,3 @@ export const useTweets = () => {
   }
   return data;
 };
-
-const fetcher = async (url: string) => (await fetch(url)).json();

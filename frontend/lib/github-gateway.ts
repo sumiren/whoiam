@@ -70,6 +70,11 @@ const calculateTechRatio = ({
       };
     })
     .filter((pie) => pie.percentage !== 0);
+  techRatio.sort((a, b) => {
+    if (a.percentage > b.percentage) return -1;
+    if (a.percentage < b.percentage) return 1;
+    return 0;
+  });
 
   if (techRatio.length < 4) {
     return techRatio;
