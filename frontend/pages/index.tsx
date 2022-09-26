@@ -7,7 +7,6 @@ import { BlogList } from "../components/blog-list";
 import { PortfolioList } from "../components/portfolio-list";
 import { SimpleHeadlineAndTitleSection } from "../components/simple-headline-and-title-section";
 import {
-  GitHubRepository,
   GitHubRepositoryList,
 } from "../components/github-repository-list";
 import { useEffect, useState } from "react";
@@ -31,7 +30,7 @@ const Home: NextPage<Props> = ({ blogPosts, portfolios }: Props) => {
   const [shownPortfolios, setShownPortfolios] = useState(
     portfolios.slice(0, 3)
   );
-  const repositories: GitHubRepository[] = [...Array(2)].map((_) => ({
+  const repositories = [...Array(2)].map((_) => ({
     name: "sumiren/bookapp",
     description:
       "control tsundoku books and manage your life of reading nice books.",

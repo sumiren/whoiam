@@ -1,22 +1,9 @@
 import { List, Progress, Text, useMantineTheme } from "@mantine/core";
 import { IconGitFork, IconStar } from "@tabler/icons";
+import { GitHubRepository } from "../lib/github-gateway";
 
 export interface GitHubRepositoryProps {
   repositories: GitHubRepository[];
-}
-
-export interface GitHubRepository {
-  name: string;
-  description: string;
-  stars: number;
-  forks: number;
-  techRatio: TechPie[];
-}
-
-export interface TechPie {
-  tech: string;
-  percentage: number;
-  color: string;
 }
 
 export const GitHubRepositoryList = ({

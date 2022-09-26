@@ -20,6 +20,7 @@
     "@tabler/icons": "^1.82.0",
     "cookies-next": "^2.1.1",
     "date-fns": "^2.29.2",
+    "graphql-request": "^5.0.0",
     "microcms-js-sdk": "^2.2.1",
     "next": "12.2.4",
     "react": "18.2.0",
