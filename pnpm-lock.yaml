@@ -27,6 +27,7 @@ importers:
       eslint: 8.21.0
       eslint-config-next: 12.2.4
       eslint-config-prettier: ^8.5.0
+      graphql: ^16.6.0
       graphql-request: ^5.0.0
       jsdom: ^20.0.0
       microcms-js-sdk: ^2.2.1
@@ -53,6 +54,7 @@ importers:
       '@tabler/icons': 1.82.0_biqbaboplfbrettd7655fr4n2y
       cookies-next: 2.1.1
       date-fns: 2.29.2
+      graphql: 16.6.0
       graphql-request: 5.0.0_graphql@16.6.0
       microcms-js-sdk: 2.2.1
       next: 12.2.4_n4jygvn2hj75s7kw7xng46hwly
