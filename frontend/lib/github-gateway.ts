@@ -53,28 +53,36 @@ const calculateTechRatio = ({
   if (!edges) {
     return [];
   }
-  const techRatio = edges
+  const sorted = [...edges].sort((a, b) => {
+    if (a.size > b.size) return -1;
+    if (a.size < b.size) return 1;
+    return 0;
+  });
+  console.log("totalSize", totalSize)
+  console.log("edges", edges)
+
+  const techRatio = sorted
     .map((lang, index) => {
       const isLast = index + 1 === edges.length;
       return {
         tech: lang.node.name,
         color: lang.node.color,
         // 最後の要素は100からそれ以外の合計割合を引く
+        // 小数点以下1桁まで出したい（98.7）などが、
+        // 100 - 50.4 - 30.2 = ...みたいな計算をすると、小数点以下の計算となり
+        // 誤差が発生するため、1000 - 504 - 302のように整数の世界で計算し、
+        // 最後に10で割る
         percentage: isLast
-          ? 100 -
-            edges
+          ? (1000 -
+            sorted
               .slice(0, edges.length - 1)
-              .map((l) => Math.floor((l.size / totalSize) * 100))
-              .reduce((a, b) => a + b, 0)
-          : Math.floor((lang.size / totalSize) * 100),
+              .map((l) => Math.floor(l.size * 1000/ totalSize ))
+              .reduce((a, b) => a + b, 0)) / 10
+          : Math.floor(lang.size * 1000 / totalSize ) / 10,
       };
     })
     .filter((pie) => pie.percentage !== 0);
-  techRatio.sort((a, b) => {
-    if (a.percentage > b.percentage) return -1;
-    if (a.percentage < b.percentage) return 1;
-    return 0;
-  });
+  console.log("techRatio", techRatio)
 
   if (techRatio.length < 4) {
     return techRatio;
