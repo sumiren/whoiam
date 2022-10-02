@@ -58,8 +58,8 @@ const calculateTechRatio = ({
     if (a.size < b.size) return 1;
     return 0;
   });
-  console.log("totalSize", totalSize)
-  console.log("edges", edges)
+  console.log("totalSize", totalSize);
+  console.log("edges", edges);
 
   const techRatio = sorted
     .map((lang, index) => {
@@ -74,15 +74,16 @@ const calculateTechRatio = ({
         // 最後に10で割る
         percentage: isLast
           ? (1000 -
-            sorted
-              .slice(0, edges.length - 1)
-              .map((l) => Math.floor(l.size * 1000/ totalSize ))
-              .reduce((a, b) => a + b, 0)) / 10
-          : Math.floor(lang.size * 1000 / totalSize ) / 10,
+              sorted
+                .slice(0, edges.length - 1)
+                .map((l) => Math.floor((l.size * 1000) / totalSize))
+                .reduce((a, b) => a + b, 0)) /
+            10
+          : Math.floor((lang.size * 1000) / totalSize) / 10,
       };
     })
     .filter((pie) => pie.percentage !== 0);
-  console.log("techRatio", techRatio)
+  console.log("techRatio", techRatio);
 
   if (techRatio.length < 4) {
     return techRatio;
