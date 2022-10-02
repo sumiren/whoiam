@@ -1,22 +1,9 @@
 import { List, Progress, Text, useMantineTheme } from "@mantine/core";
 import { IconGitFork, IconStar } from "@tabler/icons";
+import { GitHubRepository } from "../lib/github-gateway";
 
 export interface GitHubRepositoryProps {
   repositories: GitHubRepository[];
-}
-
-export interface GitHubRepository {
-  name: string;
-  description: string;
-  stars: number;
-  forks: number;
-  techRatio: TechPie[];
-}
-
-export interface TechPie {
-  tech: string;
-  percentage: number;
-  color: string;
 }
 
 export const GitHubRepositoryList = ({
@@ -67,7 +54,7 @@ export const GitHubRepositoryList = ({
                       <div
                         className={`rounded-full w-2 h-2`}
                         style={{
-                          background: toHex(pie.color),
+                          background: pie.color,
                         }}
                       ></div>
                       <Text className="ml-1 text-xs">{pie.tech}</Text>
@@ -82,9 +69,4 @@ export const GitHubRepositoryList = ({
       })}
     </List>
   );
-
-  function toHex(mantineColorExpression: string): string {
-    const [colorName, index] = mantineColorExpression.split(".");
-    return theme.colors[colorName][+index];
-  }
 };
